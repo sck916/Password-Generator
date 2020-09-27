@@ -5,7 +5,7 @@ var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i","j", "k", "l", "m",
 var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var numeric = ["0","1","2","3","4","5","6","7","8","9"];
 var specialCharacters = ["+", "-", "&", "||", "!", "(", ")", "{", "}", "[", "]", "^","~", "*", "?"];
-var password = lowercase;
+var password=lowercase;
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -17,41 +17,51 @@ function writePassword() {
 
 
 function generatePassword(){
-    var length = prompt('how long do you want your password to be?');
+//Prompt asking user pwd length and lenght must be greater than 8
+
+    var length = prompt('How long do you want your password to be?');
     while (length < 8){
-        alert('must be greater than 8 characters');
-        length = prompt('how long do you want your password to be?');
+        alert('Your password must be greater than 8 characters!');
+        length = prompt('How long do you want your password to be?');
     }
 
-    var special = confirm('Do you want any special characters');
-/*     alert(special);
- */    if (special == true) { password += specialCharacters;
-        }
-    /* alert(password); */
-
-    var numbers = confirm('Do you want any numbers');
-    if (numbers == true) {password += numeric;
+//boolean for special charachters add var i=0 add ech charchter individually special charachters to the pwd push adds special charachters to passwords 
+    var question = confirm('Do you want any special characters?');
+    if (question == true) { 
+            for(var i =0; i<specialCharacters.length;i++){
+                password.push(specialCharacters[i]);
+            }
         }
 
-    /* alert(password);  */
+    var question2 = confirm('Do you want any numbers?');
+    if (question2 == true) {
+        for(var i =0; i<numeric.length;i++){
+            password.push(numeric[i]);
+         }
+        }
 
-    var upper = confirm('Do you want any upper case letters');
-    if (upper == true) {password += uppercase;
+
+    var question3 = confirm('Do you want any upper case letters?');
+    if (question3 == true) {
+        for(var i =0; i<uppercase.length;i++){
+            password.push(uppercase[i]);
+            }
         }
   
-    alert(password)  
+// holds the password
     var actual=[];
-    var randchar;
 
-    alert(password)
+// selects randomly the charachters in our password and adds them to our password
     for(var index = 0;index<length;index++){
         
-        randchar=password[Math.floor(Math.random() * password.length+1)];
-        actual.push(randchar);
-        console.log(actual);
+        actual.push(password[Math.floor(Math.random() * password.length+1)]);
+        
     }
-    alert('The password I have stored is : '+actual);
+    // .join turns it into srting and return prints it 
+    result=actual.join('');
 
-
+    return result;
+    }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
