@@ -1,4 +1,5 @@
 # Password-Generator
+- [**Password-Generator:**](http://kavuu.tech/Password-Generator/)
 
 This project was designed as a homework assignment for Northwestern University coding bootcamp.
 
